@@ -6,9 +6,14 @@ import "./App.css";
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+  const [farewellMsg, setFarewellMsg] = useState("");
 
   async function greet() {
     setGreetMsg(await invoke("greet", { name }));
+  }
+
+  async function farewell() {
+    setFarewellMsg(await invoke("farewell", { name }));
   }
 
   useEffect(() => {
@@ -39,8 +44,10 @@ function App() {
           placeholder="Enter a name..."
         />
         <button type="submit">Greet</button>
+        <button className="m-2" onClick={farewell}>Farewell</button>
       </form>
       <p>{greetMsg}</p>
+      <p>{farewellMsg}</p>
     </main>
   );
 }
